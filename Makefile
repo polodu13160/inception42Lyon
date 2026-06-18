@@ -4,7 +4,7 @@ FLAGS = -d
 
 all:
 	@if [ ! -f .env ]; then \
-		echo "Fichier .env manquant, modifier le env.exemple !"; \
+		echo "Missing .env file, change env.example to .env!"; \
 		exit 1; \
 	fi
 	mkdir -p /home/${USER}/data/mariadb
