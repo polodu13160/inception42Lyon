@@ -1,5 +1,7 @@
 .PHONY = all stop fclean FORCE
 
+FLAGS = -d  
+
 all:
 	@if [ ! -f .env ]; then \
 		echo "Fichier .env manquant, modifier le env.exemple !"; \
@@ -7,21 +9,20 @@ all:
 	fi
 	mkdir -p /home/${USER}/data/mariadb
 	mkdir -p /home/${USER}/data/wordpress
+	mkdir -p /home/${USER}/data/phpmyadmin
+	head  -n 11 .env > /tmp/en2
+	mv /tmp/en2 .env
 	@echo "MY_UID=$$(id -u)" >> .env
-	docker compose up -d --build
+	docker compose up $(FLAGS)
 fclean: clean
 	docker rmi inception42lyon-mariadb:latest inception42lyon-nginx:latest  inception42lyon-wordpress:latest  
 stop:
 	docker compose down
 clean: 
 	docker compose down -v
-	head  -n 11 .env > /tmp/en2
-	mv /tmp/en2 .env
-	
-	rm -rf /home/${USER}/data/mariadb
-	rm -rf /home/${USER}/data/wordpress
+	rm -rf /home/${USER}/data
 
-rerun:
-	docker compose up -d
+rerunforce:
+	@make all FLAGS="-d --build"
 
 

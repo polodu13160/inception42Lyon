@@ -16,6 +16,7 @@ services:
     container_name: nginx
     volumes:
       - wordpress:/var/www/wordpress
+      - phpmyadmin:/var/www/phpmyadmin
     networks:
       - inception
     depends_on:        			 
@@ -42,6 +43,21 @@ services:
     restart: on-failure
     expose: 
     - "9000"
+  phpmyadmin:
+    container_name: phpmyadmin
+    env_file: .env
+    volumes:
+      - phpmyadmin:/var/www/phpmyadmin
+    networks:
+      - inception
+    build: 
+      context: phpmyadmin
+      dockerfile: Dockerfile
+    depends_on:    					
+      - mariadb
+    restart: on-failure
+    expose: 
+    - "9000"
 
 volumes:
   wordpress:
@@ -50,6 +66,12 @@ volumes:
       type: 'none' 								
       o: 'bind'
       device: '/home/$USER/data/wordpress' 		
+  phpmyadmin:
+    driver: local 
+    driver_opts:
+      type: 'none' 								
+      o: 'bind'
+      device: '/home/$USER/data/phpmyadmin'
   mariadb:
     driver: local
     driver_opts:
