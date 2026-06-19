@@ -39,7 +39,7 @@ $cfg['Servers'][$i]['AllowNoPassword'] = false;
 // =$cfg['Servers'][$i]['controlhost'] = '';
 // $cfg['Servers'][$i]['controlport'] = '3306';
 $cfg['Servers'][$i]['user'] = getenv('SQL_USER');
-$cfg['Servers'][$i]['password'] = getenv('SQL_PASSWORD');
+$cfg['Servers'][$i]['password'] = file_get_contents("/run/secrets/db_user_password");
 
 /* Storage database and tables */
 // $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';

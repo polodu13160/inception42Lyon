@@ -8,21 +8,21 @@ if [ ! -f wp-config.php ]; then
     wp config create --allow-root \
         --dbname=$SQL_DATABASE \
         --dbuser=$SQL_USER \
-        --dbpass=$SQL_PASSWORD \
+        --dbpass=$(</run/secrets/db_user_password) \
         --dbhost=mariadb:3306
 
     wp core install --allow-root \
-        --url=pde-petr.42.fr \
+        --url=$DOMAIN_NAME\
         --title="Inception de Paul" \
         --admin_user=$WP_ADMIN_USER \
-        --admin_password=$WP_ADMIN_PASSWORD \
+        --admin_password=$(</run/secrets/db_user_password) \
         --admin_email=$WP_ADMIN_EMAIL
 
     wp user create --allow-root \
         $WP_USER_LOGIN \
         $WP_USER_EMAIL \
         --role=author \
-        --user_pass=$WP_USER_PASSWORD
+        --user_pass=$(</run/secrets/db_user_password)
 fi
 
 chown -R ${MY_UID}:www-data /var/www/wordpress
