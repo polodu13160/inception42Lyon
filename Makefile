@@ -11,12 +11,12 @@ all:
 	@if [ ! -f ./secrets/db_root_password.txt ]; then \
 		echo "password for root (mariadb/wordpress) :" ; \
 		read password ; \
-		echo "$$password" > ./secrets/db_root_password.txt ; \
+		echo "$$password"  | tr -d '\n' | cat > ./secrets/db_root_password.txt ;\
 	fi
 	@if [ ! -f ./secrets/db_user_password.txt ]; then \
 		echo "password for user (mariadb/wordpress/phpmyadmin) :";\
 		read password ;\
-		echo "$$password"  > ./secrets/db_user_password.txt ;\
+		echo "$$password"  | tr -d '\n' | cat > ./secrets/db_user_password.txt ;\
 	fi
 
 		
@@ -28,14 +28,16 @@ all:
 	@echo "MY_UID=$$(id -u)" >> .env
 	docker compose up $(FLAGS)
 fclean: clean
-	docker rmi inception42lyon-mariadb:latest inception42lyon-nginx:latest  inception42lyon-wordpress:latest  
+	docker rmi inception42lyon-mariadb:latest inception42lyon-nginx:latest  inception42lyon-wordpress:latest
+	rm -rf ./secrets/db_root_password.txt
+	rm -rf ./secrets/db_user_password.txt
 stop:
 	docker compose down
 clean: 
 	docker compose down -v
 	rm -rf /home/${USER}/data
 
-rerunforce:
+rerunforce: 
 	rm -rf ./secrets/db_root_password.txt
 	rm -rf ./secrets/db_user_password.txt
 	@make all FLAGS="-d --build"
