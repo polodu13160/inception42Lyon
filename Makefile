@@ -6,8 +6,20 @@ all:
 	@echo "change env.example to .env! and modif password for db and wp in secrets if first initialization" 
 	@if [ ! -f .env ]; then \
 		echo "Missing .env file, change env.example to .env!"; \
-		exit 1; \
+		exit 1 ;\
 	fi
+	@if [ ! -f ./secrets/db_root_password.txt ]; then \
+		echo "password for root (mariadb/wordpress) :" ; \
+		read password ; \
+		echo "$$password" > ./secrets/db_root_password.txt ; \
+	fi
+	@if [ ! -f ./secrets/db_user_password.txt ]; then \
+		echo "password for user (mariadb/wordpress/phpmyadmin) :";\
+		read password ;\
+		echo "$$password"  > ./secrets/db_user_password.txt ;\
+	fi
+
+		
 	mkdir -p /home/${USER}/data/mariadb
 	mkdir -p /home/${USER}/data/wordpress
 	mkdir -p /home/${USER}/data/phpmyadmin
@@ -24,6 +36,9 @@ clean:
 	rm -rf /home/${USER}/data
 
 rerunforce:
+	rm -rf ./secrets/db_root_password.txt
+	rm -rf ./secrets/db_user_password.txt
 	@make all FLAGS="-d --build"
+
 
 
