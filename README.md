@@ -49,6 +49,7 @@ To launch the project, the `Makefile` automatically handles the password configu
 ## RESOURCES
 
 * [Docker Secrets](https://blog.stephane-robert.info/docs/conteneurs/moteurs-conteneurs/docker/secrets/)
+* [Docker Volume](https://docs.docker.com/reference/compose-file/volumes/)
 * [Grafikart - Docker](https://grafikart.fr/tutoriels/docker)
 * [Tuto GradeMe - Inception](https://tuto.grademe.fr/inception/)
 * [StackExchange - Bash argument](https://unix.stackexchange.com/questions/393351/pass-contents-of-file-as-argument-to-bash-script)
