@@ -4,7 +4,7 @@ services:
     networks:
       - inception            			
     build: 
-      context: mariadb 	
+      context: srcs/mariadb 	
       dockerfile: Dockerfile			
     env_file: .env
     secrets:
@@ -25,7 +25,7 @@ services:
     depends_on:        			 
       - wordpress
     build: 
-      context: nginx
+      context: srcs/nginx
       dockerfile: Dockerfile
     env_file: .env
     restart: on-failure
@@ -42,7 +42,7 @@ services:
     networks:
       - inception
     build: 
-      context: wordpress
+      context: srcs/wordpress
       dockerfile: Dockerfile
     depends_on:    					
       - mariadb
@@ -50,7 +50,7 @@ services:
     expose: 
     - "9000"
   phpmyadmin:
-    container_name: phpmyadmin
+    container_name: srcs/phpmyadmin
     env_file: .env
     secrets:
       - db_user_password
