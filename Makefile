@@ -8,6 +8,7 @@ all:
 		echo "Missing .env file, change env.example to .env!"; \
 		exit 1 ;\
 	fi
+	mkdir -p ./secrets
 	@if [ ! -f ./secrets/db_root_password.txt ]; then \
 		echo "password for root (mariadb/wordpress) :" ; \
 		read password ; \
