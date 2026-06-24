@@ -6,8 +6,7 @@ services:
     build: 
       context: srcs/mariadb 	
       dockerfile: Dockerfile	
-      tags:
-        - inception-mariadb:latest		
+    image: inception-mariadb:latest
     env_file: .env
     secrets:
       - db_root_password
@@ -29,8 +28,7 @@ services:
     build: 
       context: srcs/nginx
       dockerfile: Dockerfile
-      tags:
-        - inception-mariadb:latest	
+    image: inception-nginx:latest
     env_file: .env
     restart: on-failure
     ports:
@@ -48,15 +46,14 @@ services:
     build: 
       context: srcs/wordpress
       dockerfile: Dockerfile
-      tags:
-        - inception-mariadb:latest	
+    image: inception-wordpress:latest
     depends_on:    					
       - mariadb
     restart: on-failure
     expose: 
     - "9000"
   phpmyadmin:
-    container_name: srcs/phpmyadmin
+    container_name: phpmyadmin
     env_file: .env
     secrets:
       - db_user_password
@@ -65,10 +62,9 @@ services:
     networks:
       - inception
     build: 
-      context: phpmyadmin
+      context: srcs/phpmyadmin
       dockerfile: Dockerfile
-      tags:
-        - inception-mariadb:latest	
+    image: inception-phpmyadmin:latest
     depends_on:    					
       - mariadb
     restart: on-failure
