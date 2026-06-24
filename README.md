@@ -40,8 +40,8 @@ To launch the project, the `Makefile` automatically handles the password configu
 * `make rerunforce`: Rebuilds everything from scratch, including password generation.
 
 ### Service Access
-* **WordPress:** `https://localhost` (or via `DOMAIN_NAME=student.42.fr` by configuring the `hosts` file to link it to `localhost`).
-* **phpMyAdmin:** `https://localhost/phpmyadmin/`
+* **WordPress:** `https://DOMAIN_NAME` (or via `DOMAIN_NAME=student.42.fr` by configuring the `hosts` file to link it to `localhost`).
+* **phpMyAdmin:** `https://DOMAIN_NAME/phpmyadmin/`
     * *Note:* Do not forget the trailing `/`. Use the username and password `user` not `root`.
 
 ---

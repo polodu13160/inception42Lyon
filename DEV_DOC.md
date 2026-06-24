@@ -18,3 +18,26 @@ The entire project lifecycle is managed by the `Makefile` located at the root.
 * To compile local Docker images and launch containers in detached mode, run:
   ```bash
   make
+
+## 3. Access MariaDB and Wordpress
+
+# Access mariaDB
+ ```bash
+  docker exec -it mariadb bash
+  mariadb -u user/root -p
+  SHOW DATABASES
+  USE DATABASENAME
+```
+see other commands : https://mariadb.com/docs/server/reference/sql-statements/comment-syntax
+
+# Access Wordpress
+
+https://DOMAIN_NAME/wp-admin/
+
+Connect with user
+
+# Access PhpMyAdmin
+
+https://DOMAIN_NAME/phpmyadmin/
+
+Connect with user
