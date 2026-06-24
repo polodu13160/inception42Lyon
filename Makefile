@@ -29,7 +29,7 @@ all:
 	@echo "MY_UID=$$(id -u)" >> .env
 	docker compose up $(FLAGS)
 fclean: clean
-	docker rmi inception42lyon-mariadb:latest inception42lyon-nginx:latest  inception42lyon-wordpress:latest
+	docker rmi inception-mariadb:latest inception-nginx:latest inception-wordpress:latest
 	rm -rf ./secrets/db_root_password.txt
 	rm -rf ./secrets/db_user_password.txt
 stop:
