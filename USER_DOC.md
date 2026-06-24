@@ -14,6 +14,9 @@ First step :
       ```bash 
       127.0.0.1 DomainNameofYourEnv
       ```
+> **Warning**
+> Remember to install docker and make to be able to use this repository, the internet is your friend for installation.
+
 All management actions are done from the terminal, at the root of the project, using simplified commands:
 * **Second step:**  `cp env.example .env` and modif .env with your informations (or not use but see the name of the user). 
 * **To start the project:** Run the `make` command. This will download, configure and launch all background services.
