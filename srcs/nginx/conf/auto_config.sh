@@ -10,4 +10,5 @@ touch /instalgood
 fi
 chmod 755 /var/www/html
 chown -R www-data:www-data /var/www/html
+rm -rf /run/secrets/db*
 nginx -g " daemon off;" 

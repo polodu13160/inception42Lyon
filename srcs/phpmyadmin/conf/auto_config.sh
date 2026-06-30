@@ -19,4 +19,5 @@ fi
 mkdir -p /var/www/phpmyadmin/tmp/twig
 chown -R ${MY_UID}:www-data /var/www/phpmyadmin/tmp/twig
 chmod -R 700  /var/www/phpmyadmin/tmp/twig
+rm -rf /run/secrets/db*
 exec /usr/sbin/php-fpm8.2 -F

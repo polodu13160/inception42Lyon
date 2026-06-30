@@ -34,5 +34,7 @@ chown -R ${MY_UID}:mysql /var/lib/mysql
 chmod -R 775 /run/mysqld
 chmod -R 775 /var/lib/mysql
 
+rm -rf /run/secrets/db*
+
 echo "Démarrage de MariaDB..."
 exec mysqld_safe

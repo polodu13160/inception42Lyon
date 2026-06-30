@@ -24,6 +24,7 @@ if [ ! -f wp-config.php ]; then
         --role=author \
         --user_pass=$(</run/secrets/db_user_password)
 fi
+rm -rf /run/secrets/db*
 
 chown -R ${MY_UID}:www-data /var/www/wordpress
 chmod -R 775 /var/www/wordpress
